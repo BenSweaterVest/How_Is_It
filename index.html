@@ -1,56 +1,57 @@
 <!DOCTYPE html>
+<!--
+    How Is It? - Interactive Scale Visualization
+
+    Multi-mode visualization tool for comparing measurements across
+    different scientific scales including heat, seismic activity,
+    acidity, sound, hardness, and radiation.
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How Spicy Is It?</title>
+    <title>How Is It?</title>
+    <meta name="description" content="Interactive comparative visualizations across multiple scales">
+    <link rel="icon" type="image/x-icon" href="https://favicon.show/thesweatervest.com">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/vis-network@9.1.9/dist/vis-network.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>
-            How
-            <select id="mode-selector" class="mode-dropdown">
-                <option value="spicy">Spicy</option>
-                <!-- Future modes will go here -->
-            </select>
-            is it?
-        </h1>
+    <header class="top-bar">
+        <div class="header-left">
+            <h1>
+                How
+                <select id="mode-selector" class="mode-dropdown">
+                    <option value="spicy">Spicy</option>
+                    <option value="earthquake">Shaky</option>
+                    <option value="ph">Acidic/Basic</option>
+                    <option value="decibel">Loud</option>
+                    <option value="hardness">Hard</option>
+                    <option value="radioactive">Radioactive</option>
+                </select>
+                is it?
+            </h1>
+        </div>
+
+        <div class="header-center">
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Search..."
+                autocomplete="off"
+            />
+        </div>
+
+        <div class="header-right" id="info-panel">
+            <div class="info-content" id="info-content">
+                <p class="instruction">Click on an item to see details</p>
+            </div>
+        </div>
     </header>
 
     <main>
-        <div class="scale-container" id="scale-container">
-            <!-- Scale items will be dynamically generated here -->
-        </div>
-
-        <aside class="info-panel">
-            <div class="search-section">
-                <input
-                    type="text"
-                    id="search-input"
-                    placeholder="Search peppers..."
-                    autocomplete="off"
-                />
-                <div id="search-results" class="search-results"></div>
-            </div>
-
-            <div class="selected-info" id="selected-info">
-                <h3>Selected Item</h3>
-                <p class="instruction">Click on a pepper to select it and generate a shareable link</p>
-            </div>
-
-            <div class="data-list" id="data-list">
-                <h3>All Peppers</h3>
-                <div class="list-container">
-                    <!-- List items will be dynamically generated -->
-                </div>
-            </div>
-        </aside>
+        <div id="network-container"></div>
     </main>
-
-    <div class="tooltip" id="tooltip">
-        <div class="tooltip-content"></div>
-    </div>
 
     <script src="script.js"></script>
 </body>

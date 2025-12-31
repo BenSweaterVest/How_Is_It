@@ -1,27 +1,35 @@
-# How Spicy Is It?
+# How Is It?
 
 An interactive web tool for communicating intensity levels using scientific scales as humorous metaphors.
 
 ## Concept
 
-Use real, measurable scientific scales (like the Scoville scale for peppers) to describe abstract situations. Say "this meeting is going to be Carolina Reaper level" or "this email is habanero spicy" and share a visual reference.
+Use real, measurable scientific scales to describe abstract situations. Say "this meeting is going to be Carolina Reaper level" or "this email is 7.5 on the Richter scale" and share a visual reference.
+
+## Available Modes
+
+- **Spicy** - Scoville scale (0 to 3+ million SHU) with 33 pepper varieties
+- **Shaky** - Richter/Moment Magnitude scale (1.0 to 9.5) with 21 earthquake intensities
+- **Acidic/Basic** - pH scale (0 to 14) with 28 common substances
+- **Loud** - Decibel scale (0 to 194 dB) with 35 sound levels
+- **Hard** - Mohs hardness scale (2 to 15) with 19 materials
+- **Radioactive** - Radiation dose scale (0.0001 to 400+ mSv) with 18 exposure levels
 
 ## Features
 
-- **Interactive Scale**: Horizontal visualization of the complete Scoville scale (0 to 3+ million SHU)
-- **33 Peppers**: Comprehensive data from Bell Peppers to Pepper X
-- **Dynamic Hover Effects**: Items grow and show detailed tooltips on hover
-- **Search Functionality**: Find peppers by name or description
-- **Shareable Links**: Click any pepper to generate a URL you can share
-- **Beautiful Gradients**: Visual design inspired by neal.fun and Information is Beautiful
-- **Responsive Design**: Works on desktop and mobile devices
+- Six different measurement scales with mode switcher
+- Interactive network visualization powered by vis.js library
+- Hover tooltips showing detailed information for each data point
+- Search capability across all items and descriptions
+- Direct Wikipedia links for additional reference material
+- Responsive design supporting desktop and mobile browsers
 
 ## How to Use
 
-1. **Browse**: Hover over peppers on the scale to see details
-2. **Search**: Use the search bar to find specific peppers
-3. **Select**: Click a pepper to select it
-4. **Share**: Copy the generated link to share with others
+1. Select a measurement mode from the dropdown menu
+2. Hover over items to view detailed information
+3. Use the search bar to locate specific items
+4. Click any item to open its Wikipedia article in a new tab
 
 ## Design Inspiration
 
@@ -31,27 +39,23 @@ Use real, measurable scientific scales (like the Scoville scale for peppers) to 
 
 ## Technical Details
 
-- Pure HTML, CSS, and JavaScript (no dependencies)
-- Smooth CSS transitions and animations
-- URL parameter-based sharing
-- Responsive grid layout
-- Emoji-based visual design
-
-## Future Modes
-
-The architecture supports adding additional scales:
-- Richter Scale (earthquakes)
-- pH Scale (acidity/alkalinity)
-- Decibel Scale (sound)
-- Beaufort Scale (wind)
-- Mohs Hardness Scale (minerals)
-- UV Index
-- Caffeine Content
+- Pure HTML, CSS, and JavaScript implementation
+- vis.js network library handles physics-based node positioning
+- Supports logarithmic (spicy, earthquake, radioactive) and linear (pH, decibel, hardness) scale types
+- CSS transitions combined with vis.js physics for smooth animations
+- Responsive layout adapts to different screen sizes
+- Image-based nodes with emoji fallbacks for visual consistency
 
 ## Running Locally
 
 Simply open `index.html` in any modern web browser. No build process or server required.
 
-## Data Accuracy
+## Data Sources
 
-All Scoville Heat Unit (SHU) measurements are based on commonly accepted ranges for each pepper variety. Some peppers have wide ranges due to growing conditions, ripeness, and genetic variation.
+All measurements use commonly accepted scientific values:
+- Scoville Heat Units (SHU) based on standard pepper variety ranges
+- Moment Magnitude scale data from USGS earthquake records
+- pH values from standard chemistry references
+- Decibel (dB) measurements from typical sound pressure levels
+- Mohs hardness scale using reference mineral standards
+- Radiation doses (mSv) from medical and scientific exposure data
