@@ -352,6 +352,10 @@ function loadMode(modeName) {
     // Update search placeholder
     document.getElementById('search-input').placeholder = 'Search...';
 
+    // Update scale subtitle
+    const subtitleText = getScaleSubtitle(mode);
+    document.getElementById('scale-subtitle').textContent = subtitleText;
+
     // Apply theme
     if (mode.theme) {
         document.body.style.background = mode.theme.background;
@@ -360,6 +364,28 @@ function loadMode(modeName) {
 
     // Create network visualization
     createNetwork(mode);
+}
+
+// Generate subtitle text based on mode
+function getScaleSubtitle(mode) {
+    const scaleTypeText = mode.scaleType === 'logarithmic' ? 'Logarithmic Scale' : 'Linear Scale';
+
+    switch(mode.unit) {
+        case 'SHU':
+            return 'Scoville Heat Units (SHU) - Logarithmic Scale';
+        case 'Magnitude':
+            return 'Richter Scale - Logarithmic Scale';
+        case 'pH':
+            return 'pH Scale (0-14) - Linear Scale';
+        case 'dB':
+            return 'Decibels (dB) - Linear Scale';
+        case 'Mohs':
+            return 'Mohs Hardness Scale (1-10) - Linear Scale';
+        case 'mSv':
+            return 'Millisieverts (mSv) - Logarithmic Scale';
+        default:
+            return `${mode.unit} - ${scaleTypeText}`;
+    }
 }
 
 // Convert value to position (0-1)

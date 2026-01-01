@@ -43,6 +43,9 @@ body {
 
 .header-left {
     flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
 .header-left h1 {
@@ -52,6 +55,15 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.scale-subtitle {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #7f8c8d;
+    margin-left: 0.25rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .mode-dropdown {
