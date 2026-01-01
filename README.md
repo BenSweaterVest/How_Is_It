@@ -10,7 +10,7 @@ Use real, measurable scientific scales to describe abstract situations. Say "thi
 
 - **Spicy** - Scoville scale (0 to 3+ million SHU) with 33 pepper varieties
 - **Shaky** - Richter/Moment Magnitude scale (1.0 to 9.5) with 21 earthquake intensities
-- **Acidic/Basic** - pH scale (0 to 14) with 28 common substances
+- **Basic/Acidic** - pH scale (0 to 14) with 28 common substances
 - **Loud** - Decibel scale (0 to 194 dB) with 35 sound levels
 - **Hard** - Mohs hardness scale (2 to 15) with 19 materials
 - **Radioactive** - Radiation dose scale (0.0001 to 400+ mSv) with 18 exposure levels

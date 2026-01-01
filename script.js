@@ -15,6 +15,10 @@ const modes = {
         name: 'Spicy',
         scaleType: 'logarithmic',
         unit: 'SHU',
+        theme: {
+            background: 'linear-gradient(to right, #fff3e0 0%, #ffe0b2 25%, #ffcc80 50%, #ff8a65 75%, #ef5350 100%)',
+            accent: '#ff6b6b'
+        },
         markers: [
             { value: 0, label: '0' },
             { value: 500, label: '500' },
@@ -69,6 +73,10 @@ const modes = {
         name: 'Shaky',
         scaleType: 'logarithmic',
         unit: 'Magnitude',
+        theme: {
+            background: 'linear-gradient(to right, #e8f5e9 0%, #fff9c4 25%, #ffecb3 50%, #ffccbc 75%, #d32f2f 100%)',
+            accent: '#d84315'
+        },
         markers: [
             { value: 1, label: '1.0' },
             { value: 2, label: '2.0' },
@@ -107,9 +115,13 @@ const modes = {
     },
 
     ph: {
-        name: 'Acidic/Basic',
+        name: 'Basic/Acidic',
         scaleType: 'linear',
         unit: 'pH',
+        theme: {
+            background: 'linear-gradient(to right, #f44336 0%, #ff9800 20%, #ffeb3b 35%, #e8f5e9 50%, #81c784 65%, #4caf50 80%, #1b5e20 100%)',
+            accent: '#66bb6a'
+        },
         markers: [
             { value: 0, label: '0 (Acidic)' },
             { value: 2, label: '2' },
@@ -157,6 +169,10 @@ const modes = {
         name: 'Loud',
         scaleType: 'linear',
         unit: 'dB',
+        theme: {
+            background: 'linear-gradient(to right, #e1f5fe 0%, #b3e5fc 20%, #4fc3f7 40%, #29b6f6 60%, #1976d2 80%, #0d47a1 100%)',
+            accent: '#2196f3'
+        },
         markers: [
             { value: 0, label: '0' },
             { value: 20, label: '20' },
@@ -213,6 +229,10 @@ const modes = {
         name: 'Hard',
         scaleType: 'linear',
         unit: 'Mohs',
+        theme: {
+            background: 'linear-gradient(to right, #efebe9 0%, #d7ccc8 20%, #a1887f 40%, #6d4c41 60%, #4e342e 80%, #212121 100%)',
+            accent: '#795548'
+        },
         markers: [
             { value: 1, label: '1' },
             { value: 2, label: '2' },
@@ -257,6 +277,10 @@ const modes = {
         name: 'Radioactive',
         scaleType: 'logarithmic',
         unit: 'mSv',
+        theme: {
+            background: 'linear-gradient(to right, #f1f8e9 0%, #dcedc8 20%, #aed581 40%, #ffeb3b 60%, #ff9800 80%, #e91e63 100%)',
+            accent: '#cddc39'
+        },
         markers: [
             { value: 0.00001, label: '0.00001' },
             { value: 0.0001, label: '0.0001' },
@@ -327,6 +351,12 @@ function loadMode(modeName) {
 
     // Update search placeholder
     document.getElementById('search-input').placeholder = 'Search...';
+
+    // Apply theme
+    if (mode.theme) {
+        document.body.style.background = mode.theme.background;
+        document.documentElement.style.setProperty('--accent-color', mode.theme.accent);
+    }
 
     // Create network visualization
     createNetwork(mode);
@@ -603,10 +633,36 @@ function updateInfoPanel(item, mode) {
         : `<div class="description">${item.description}</div>`;
 
     panel.innerHTML = `
-        <h3>${item.emoji} ${item.name}</h3>
+        <h3><span class="item-name-link" data-item-id="${item.id}">${item.emoji} ${item.name}</span></h3>
         <div class="shu-value">${item.value} ${mode.unit}</div>
         ${descriptionHTML}
     `;
+
+    // Add click handler to copy link
+    const nameElement = panel.querySelector('.item-name-link');
+    nameElement.addEventListener('click', () => {
+        copyLinkToClipboard(item);
+    });
+}
+
+// Copy shareable link to clipboard
+function copyLinkToClipboard(item) {
+    const params = new URLSearchParams();
+    params.set('mode', currentMode);
+    params.set('item', item.id);
+    const shareURL = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+
+    navigator.clipboard.writeText(shareURL).then(() => {
+        // Show brief confirmation
+        const nameElement = document.querySelector('.item-name-link');
+        const originalText = nameElement.textContent;
+        nameElement.textContent = '✓ Link copied!';
+        setTimeout(() => {
+            nameElement.textContent = originalText;
+        }, 1500);
+    }).catch(err => {
+        console.error('Failed to copy link:', err);
+    });
 }
 
 // Update URL
